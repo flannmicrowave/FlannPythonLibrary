@@ -1,17 +1,27 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "Flann"
-version = 0.1
-description = "Flann's programmable instruments python control"
+name = "flannmicrowave"
+dynamic = ["version"] 
+authors = [
+    { name = "Leon Knight", email = "leon.knight@flann.com" }
+]
+description = "Flann's programmable instruments library"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
 
 dependencies = [
     "pyserial >= 3.5"
 ]
-
-requires-python = ">=3.12"
-authors = [
-    { name = "Leon Knight", email = "" }
-]
-description = "Flann's programmable instruments python control library, providing a simple interface to control Flann's range of programmable instruments."
 
 keywords = [
     "Flann",
@@ -26,5 +36,8 @@ keywords = [
 
 [project.urls]
 Homepage = "https://flann.com/"
-Repository = "https://github.com/leonknight99-flann/FlannController"
-Issues = "https://github.com/leonknight99-flann/FlannController/issues"
+Repository = "https://github.com/flannmicrowave/FlannController"
+Issues = "https://github.com/flannmicrowave/FlannController/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "flann.__version__"}

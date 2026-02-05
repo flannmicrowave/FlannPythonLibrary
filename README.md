@@ -8,6 +8,18 @@ Python libary to connect to Flann's programmable instruments and standardise the
 
 [Home Page](http://www.flann.com)
 
+## Instruments
+Software to control Flann's programmable instruments. These currently include:
+
+- Attenuators
+    - 024 variable attenuator
+    - 624 programmable RVA (Rotary Vane Attenuators)
+    - 625 programmable RVA (Rotary Vane Attenuators)
+
+- Switch
+    - 337 dual-switch controller
+    - 338 POE switch
+
 ## Examples
 
 ```python
@@ -34,15 +46,4 @@ atten.position = 500  # Sets the position to 500 steps
 print(atten.position())  # get the current position steps value
 ```
 
-## Instruments
-Software to control Flann's programmable instruments. These currently include:
-
-- Attenuators
-    - 024 variable attenuator
-    - 624 programmable RVA (Rotary Vane Attenuators)
-    - 625 programmable RVA (Rotary Vane Attenuators)
-
-- Switch
-    - 337 dual-switch controller
-    - 338 POE switch
 

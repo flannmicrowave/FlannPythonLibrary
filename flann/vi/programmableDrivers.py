@@ -7,7 +7,7 @@ import time
 
 class FlannProgrammable:
     '''Default class for all Flann programmable instruments'''
-    def __init__(self, address: str, timedelay: float=0, is_serial: bool=True):
+    def __init__(self, timedelay: float=0, is_serial: bool=True):
         if is_serial:
             self._resource = serial.Serial(stopbits=1, parity=serial.PARITY_NONE, bytesize=8, xonxoff=True)  # Windows COM port
         else:

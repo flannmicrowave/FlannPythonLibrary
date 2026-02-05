@@ -24,7 +24,12 @@ class FlannProgrammable:
         self._timedelay = timedelay
 
     def close(self):
-        self._resource.close()
+        time.sleep(self._timedelay)
+        if isinstance(self._resource, serial.serialwin32.Serial):
+            self._resource.close()
+        elif isinstance(self._resource, socket.socket):
+            self._resource.shutdown(socket.SHUT_RDWR)
+            self._resource.close()
 
     def read(self):
         time.sleep(self._timedelay)

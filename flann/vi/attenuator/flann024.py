@@ -4,7 +4,7 @@ from flann.vi import FlannProgrammable
 class Attenuator024(FlannProgrammable):
     '''Class for Flann's 024 Programmable Attenuator'''
     def __init__(self, address: str, timeout: float, baudrate: int, *args, **kwargs):
-        super().__init__(address, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self._resource.port = address
         self._resource.timeout = timeout

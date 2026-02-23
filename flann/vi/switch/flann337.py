@@ -11,7 +11,7 @@ class SwitchNumber(Enum):
 class Switch337(FlannProgrammable):
     '''Class for Flann's 337 Programmable Switch Box'''
     def __init__(self, switch: SwitchNumber, address: str, timeout: float, baudrate: int, *args, **kwargs):
-        super().__init__(address, *args, **kwargs)
+        super().__init__(*args, **kwargs)
             
         self._resource.port = address
         self._resource.timeout = timeout

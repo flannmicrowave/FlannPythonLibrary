@@ -7,9 +7,9 @@ import time
 
 class FlannProgrammable:
     '''Default class for all Flann programmable instruments'''
-    def __init__(self, address: str, timedelay: float=0):
-        if address.lower().startswith('com'):
-            self._resource = serial.Serial(stopbits=1, parity=serial.PARITY_NONE, bytesize=8, xonxoff=True)  # Windows COM port
+    def __init__(self, timedelay: float=0, is_serial: bool=True):
+        if is_serial:
+            self._resource = serial.Serial(stopbits=1, parity=serial.PARITY_NONE, bytesize=8, xonxoff=True)  # Serial port
         else:
             self._resource = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # IPv4 and TCP
 
@@ -24,7 +24,12 @@ class FlannProgrammable:
         self._timedelay = timedelay
 
     def close(self):
-        self._resource.close()
+        time.sleep(self._timedelay)
+        if isinstance(self._resource, serial.serialwin32.Serial):
+            self._resource.close()
+        elif isinstance(self._resource, socket.socket):
+            self._resource.shutdown(socket.SHUT_RDWR)
+            self._resource.close()
 
     def read(self):
         time.sleep(self._timedelay)

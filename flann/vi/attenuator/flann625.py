@@ -2,9 +2,9 @@ from flann.vi import FlannProgrammable
 
 
 class Attenuator625(FlannProgrammable):
-    '''Class for Flann's 625 programmable attenuator.'''
+    '''Class for Flann's 625 programmable attenuator'''
     def __init__(self, address: str, tcp_port: int, *args, **kwargs):
-        super().__init__(address, *args, **kwargs)
+        super().__init__(is_serial=False, *args, **kwargs)
 
         self._resource.connect((address, tcp_port))
 
@@ -39,7 +39,7 @@ class Attenuator625(FlannProgrammable):
     def attenuation(self, atten_db):
         '''Allowed values between 0-60 dB with 0.1 dB precision'''
         if 0 <= atten_db <= 60:
-            self.write(f'VALUE_SET {atten_db}\r\n')
+            self.write(f'VALUE_SET{atten_db}\r\n')
             self.read
         else:
             raise(ValueError('Not an excepted attenuation'))
@@ -54,7 +54,7 @@ class Attenuator625(FlannProgrammable):
     def position(self, steps):
         '''Allowed values between 0-9799'''
         if all([0<=steps<=9799,isinstance(steps,int)]):
-            self.write(f'STEPS_SET {steps}\r\n')
+            self.write(f'STEPS_SET{steps}\r\n')
             self.read
         else:
             raise(ValueError('Not an excepted steps position'))
